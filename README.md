@@ -1,21 +1,21 @@
-
 # 🏦 Пульт охраны банка
-```
+
 Внутренняя система мониторинга сотрудников банка «Сияние» с подключением к базе данных пропусков и визитов.
-```
+
+---
+
 ## 🚀 Быстрый старт
 
 ### 1. Клонирование и настройка
+
 ```bash
 git clone <your-repo-url>
 cd pulyt-ohrany-banka
 ```
-
 ### 2. Установка зависимостей
 ```bash
 pip install -r requirements.txt
 ```
-
 ### 3. Настройка базы данных
 ```bash
 # Для PostgreSQL
@@ -23,7 +23,6 @@ sudo -u postgres psql -c "CREATE DATABASE bank_security;"
 sudo -u postgres psql -c "CREATE USER security_user WITH PASSWORD 'secure_password123';"
 sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE bank_security TO security_user;"
 ```
-
 ### 4. Создание файла настроек
 ```bash
 cat > .env << EOL
@@ -38,40 +37,29 @@ DEBUG=True
 ALLOWED_HOSTS=localhost,127.0.0.1
 EOL
 ```
-
-### 5. Применение миграций
+### 5. Применение миграций 
 ```bash
 python manage.py migrate
 ```
-
 ### 6. Запуск тестового скрипта
 ```bash
 python main.py
 ```
-
-### 7. Проверка результата ✅
-
-Если установка прошла успешно, вы увидите:
-```
+### 7. Проверка результата ✅ 
+```bash
 Количество пропусков: X
 <QuerySet [<Passcard: Passcard object (1)>, <Passcard: Passcard object (2)>, ...]>
 Всего активных пропусков: Y
 ```
-
-Где X и Y - числа больше 0.
-
 ## 🔧 Если возникли проблемы
-
 ### Проверка подключения к БД
 ```bash
 python -c "
 import os
 import django
 from django.conf import settings
-
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'settings')
 django.setup()
-
 from django.db import connection
 try:
     connection.ensure_connection()
@@ -80,12 +68,11 @@ except Exception as e:
     print(f'❌ Ошибка подключения: {e}')
 "
 ```
-
 ### Проверка миграций
 ```bash
 python manage.py showmigrations
-```
 
+```
 ### Сброс и повторная настройка
 ```bash
 # Остановите сервер БД если запущен
@@ -98,16 +85,16 @@ sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE bank_security TO secu
 
 # Повторно примените миграции
 python manage.py migrate
+
 ```
+### Требования
+* Python 3.8+
 
-## 📦 Требования
+* PostgreSQL 12+
 
-- Python 3.8+
-- PostgreSQL 12+
-- pip 20+
+* pip 20+
 
-## 🐳 Docker альтернатива
-
+### Docker альтернатива
 ```bash
 # Установите Docker и Docker Compose
 curl -fsSL https://get.docker.com -o get-docker.sh
@@ -119,4 +106,6 @@ docker-compose up -d
 
 # Проверьте работу
 docker-compose logs app
+
 ```
+
