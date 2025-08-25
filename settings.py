@@ -1,31 +1,20 @@
 from dotenv import load_dotenv
 import os
+
 load_dotenv()
-engine = os.getenv("engine")
-host = os.getenv("host")
-port = os.getenv("port")
-name = os.getenv("name")
-user = os.getenv("user")
-password  = os.getenv("password")
-
-
 
 DATABASES = {
     'default': {
-        'ENGINE': 'engine',
-        'HOST': 'host',
-        'PORT': 'port',
-        'NAME': 'name',
-        'USER': 'user',
-        'PASSWORD': 'password ',
+        'ENGINE': os.getenv("DB_ENGINE"),
+        'HOST': os.getenv("DB_HOST"),
+        'PORT': os.getenv("DB_PORT"),
+        'NAME': os.getenv("DB_NAME"),
+        'USER': os.getenv("DB_USER"),
+        'PASSWORD': os.getenv("DB_PASSWORD"),
     }
 }
 
-
 INSTALLED_APPS = ['datacenter']
-
-SECRET_KEY = os.getenv("key")
-
+SECRET_KEY = os.getenv("KEY")
 TIME_ZONE = 'Europe/Moscow'
-
 USE_TZ = True
