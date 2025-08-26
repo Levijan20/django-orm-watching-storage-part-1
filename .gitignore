@@ -1,3 +1,12 @@
-.replit
-pyproject.toml
-poetry.lock
+
+git rm --cached <.replit>
+
+git commit
+
+git rm --cached <pyproject.toml>
+
+git commit
+
+git rm --cached <poetry.lock>
+
+git commit
